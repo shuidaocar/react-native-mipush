@@ -1,0 +1,40 @@
+apply plugin: 'com.android.library'
+
+android {
+    //compileSdkVersion 25
+    //buildToolsVersion "25.0.3"
+    compileSdkVersion 26
+    buildToolsVersion '26.0.1'
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86_64"
+        }
+        manifestPlaceholders = [
+                //测试环境
+                GETUI_APP_ID : "4PrFb29HZA7ROkO1wHNXB8",
+                GETUI_APP_KEY : "W5s9oBaCLYAV6dPRFbBa1",
+                GETUI_APP_SECRET : "YvmsRi08aU94oV92CQjlC"
+        ]
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+     fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.facebook.react:react-native:+'
+    implementation 'com.meizu.flyme.internet:push-internal:3.4.2@aar'
+    implementation files('libs/MiPush_SDK_Client_3_7_9.jar')
+    implementation 'com.github.YzyCoding:PushVoiceBroadcast:1.0.2'
+    api 'com.google.code.gson:gson:2.8.5'
+}

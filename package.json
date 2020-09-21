@@ -1,0 +1,50 @@
+{
+  "_from": "react-native-mipush@2.0.0",
+  "_id": "react-native-mipush@2.0.0",
+  "_inBundle": false,
+  "_integrity": "sha512-IjhmAgVg5P/ucQR4AeSdSNx74ovV5+ipvfWDA/IVMPopGy8ec/yZCS2soMfyeZCi/jxu/i3YX7TmZtUbPe9ADg==",
+  "_location": "/react-native-mipush",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "react-native-mipush@2.0.0",
+    "name": "react-native-mipush",
+    "escapedName": "react-native-mipush",
+    "rawSpec": "2.0.0",
+    "saveSpec": null,
+    "fetchSpec": "2.0.0"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "author": {
+    "name": "zzy"
+  },
+  "bugs": {
+    "url": "https://github.com/shuidao/react-native-mipush/issues"
+  },
+  "bundleDependencies": false,
+  "peerDependencies": {
+    "@react-native-community/push-notification-ios": "^1.0.3"
+  },
+  "deprecated": false,
+  "description": "集成小米推送",
+  "homepage": "https://github.com/shuidao/react-native-mipush#readme",
+  "keywords": [
+    "react-native",
+    "mipush"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "react-native-mipush",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a289459798/react-native-mipush.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "2.0.0"
+}
