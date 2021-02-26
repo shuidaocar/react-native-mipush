@@ -81,7 +81,7 @@ public class MIPushMessageReceiver extends PushMessageReceiver {
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                if(MIPushMoudle.isInit()) {
+                if(MIPushMoudle.isInit() && MIPushMoudle.isEventRegistered(MIPushMoudle.EVENT_RECEIVE_CLICK_NOTIFICATION)) {
                     MIPushMoudle.sendEvent(MIPushMoudle.EVENT_RECEIVE_CLICK_NOTIFICATION, mMessage);
                 }else{
                     doPolling();
