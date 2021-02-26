@@ -13,6 +13,7 @@ import com.facebook.react.modules.core.DeviceEventManagerModule;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created by wangheng on 2017/12/4.
@@ -23,6 +24,7 @@ public class MIPushMoudle extends ReactContextBaseJavaModule {
 
     private static ReactApplicationContext mRAC;
     public static MIPushManager pushManager;
+    public static ArrayList<String> eventList = new ArrayList<String>();
     public MIPushMoudle(ReactApplicationContext reactContext) {
         super(reactContext);
         mRAC=reactContext;
@@ -66,6 +68,15 @@ public class MIPushMoudle extends ReactContextBaseJavaModule {
             pushManager.unsetAlias(mRAC,alias);
         }
     }
+
+  @ReactMethod
+  public void registerEvent(String eventName) {
+        eventList.add(eventName);
+  }
+
+  public static boolean isEventRegistered(String eventName) {
+    return eventList.contains(eventName);
+  }
 
     @ReactMethod
     public void  setTags(String tags){

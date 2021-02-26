@@ -15,8 +15,7 @@ import PushNotificationIOS from '@react-native-community/push-notification-ios'
 /**
  * 获取app的版本名称\版本号和渠道名
  */
-class MIPush extends NativeEventEmitter {
-
+class MIPushIOS extends NativeEventEmitter {
     // 构造
     constructor(props) {
         super(MIPushModule);
@@ -159,9 +158,50 @@ class MIPush extends NativeEventEmitter {
     getInitialNotification(handler) {
         PushNotificationIOS.getInitialNotification().then(handler);
     }
-
 }
 
-MIPush = new MIPush();
+class MIPushAndroid extends NativeEventEmitter {
+    constructor(props) {
+        super(MIPushModule);
+        // 初始状态
+        this.state = {};
+    }
+    static EVENT_RECEIVE_REMOTE_NOTIFICATION = "receiveRemoteNotification";
+    static EVENT_RECEIVE_CLICK_NOTIFICATION = "receiveClickNotification";
 
-module.exports = Platform.OS === 'ios' ? MIPush : MIPushModule;
+    /**
+   * 设置别名
+   * @param text
+   */
+    setAlias(text) {
+
+        MIPushModule.setAlias(text);
+    }
+
+    /**
+     * 注销别名
+     * @param text
+     */
+    unsetAlias(text) {
+
+        MIPushModule.unsetAlias(text);
+    }
+
+    onClickNotification = (callback) => {
+        new NativeEventEmitter().addListener(
+            MIPushAndroid.EVENT_RECEIVE_CLICK_NOTIFICATION,
+            callback
+        );
+        MIPushModule.registerEvent(MIPushAndroid.EVENT_RECEIVE_CLICK_NOTIFICATION);
+    }
+
+    onRemoteNotification = (callback) => {
+        new NativeEventEmitter().addListener(
+            MIPushAndroid.EVENT_RECEIVE_REMOTE_NOTIFICATION,
+            callback
+        );
+        MIPushModule.registerEvent(MIPushAndroid.EVENT_RECEIVE_REMOTE_NOTIFICATION);
+    }
+}
+
+module.exports = Platform.OS === 'ios' ? new MIPushIOS() : new MIPushAndroid();
